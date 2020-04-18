@@ -29,7 +29,12 @@ class Valve extends Core {
         if (!this.options.port) this.options.port = 27015;
         await this.queryInfo(state);
         await this.queryChallenge();
-        await this.queryPlayers(state);
+        try {
+          await this.queryPlayers(state);
+        } catch(e) {
+          this.debugLog("Ignoring A2S_PLAYERs error", e);
+          state.raw.players = [];
+        }
         await this.queryRules(state);
         await this.cleanup(state);
     }
