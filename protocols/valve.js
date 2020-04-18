@@ -32,7 +32,7 @@ class Valve extends Core {
         try {
           await this.queryPlayers(state);
         } catch(e) {
-          this.debugLog("Ignoring A2S_PLAYERs error", e);
+          this.debugLog("Ignoring A2S_PLAYERs error");
           state.raw.players = [];
         }
         await this.queryRules(state);
